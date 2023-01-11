@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormControl,
@@ -16,15 +17,18 @@ import { dateValidator, salaryValidator } from './customValidators';
   styleUrls: ['./dialog.component.css'],
 })
 export class DialogComponent implements OnInit {
+  imageUrl: string = '';
   skills = new FormControl();
   actionBtn: string = 'Save';
   productForm!: FormGroup;
   srcResult: any;
+  today: Date = new Date();
   constructor(
     private formBuilder: FormBuilder,
     private api: ApiService,
     @Inject(MAT_DIALOG_DATA) public editData: any,
-    private dialogRef: MatDialogRef<DialogComponent>
+    private dialogRef: MatDialogRef<DialogComponent>,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -66,7 +70,27 @@ export class DialogComponent implements OnInit {
 
   // Image uplaod section
   onFileSelected(event: any) {
-    // console.log(event);
+    console.log(event);
+    const image = event.target.files[0];
+    const url = 'https://api.cloudinary.com/v1_1/dmftb38mw/image/upload';
+    // event.target.files[0];
+    const data = new FormData();
+    data.append('file', image);
+    data.append('upload_preset', 'crudapp');
+    fetch(url, {
+      method: 'post',
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        console.log(typeof data.url);
+        this.productForm.controls['photo'].setValue(data.url);
+        // data.url : contains image
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   addEmployee() {
@@ -90,7 +114,7 @@ export class DialogComponent implements OnInit {
   }
 
   updateEmployee() {
-    this.api.putEmployee(this.productForm.value, this.editData.id).subscribe({
+    this.api.putEmployee(this.productForm.value, this.editData._id).subscribe({
       next: (res) => {
         alert('Product Updated');
         this.productForm.reset();

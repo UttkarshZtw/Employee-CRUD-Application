@@ -53,7 +53,12 @@
     <!-- date of birth : should not be greater than present date -->
     <mat-form-field [style.width.%]="100" appearance="outline">
       <mat-label>Enter DOB</mat-label>
-      <input formControlName="dateOfBirth" matInput [matDatepicker]="picker" />
+      <input
+        formControlName="dateOfBirth"
+        matInput
+        [max]="today"
+        [matDatepicker]="picker"
+      />
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle
         matIconSuffix

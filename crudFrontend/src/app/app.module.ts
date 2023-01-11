@@ -20,9 +20,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
 
 @NgModule({
-  declarations: [AppComponent, DialogComponent],
+  declarations: [AppComponent, DialogComponent, EmployeeProfileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -18,6 +18,8 @@
   </button>
 </mat-toolbar>
 
+<router-outlet></router-outlet>
+
 <!-- table container -->
 
 <div class="container">
@@ -79,7 +81,7 @@
             </button>
             <button
               mat-icon-button
-              (click)="deleteEmployee(row.id)"
+              (click)="deleteEmployee(row._id)"
               color="warn"
             >
               <mat-icon>delete</mat-icon>
