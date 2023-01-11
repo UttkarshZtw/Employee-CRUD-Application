@@ -21,9 +21,17 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
-  declarations: [AppComponent, DialogComponent, EmployeeProfileComponent],
+  declarations: [
+    AppComponent,
+    DialogComponent,
+    EmployeeProfileComponent,
+    NavbarComponent,
+    TableComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
