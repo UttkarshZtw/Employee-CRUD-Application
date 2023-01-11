@@ -4,7 +4,8 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const mongoose = require("mongoose");
-const dB = `mongodb+srv://uttkarsh5801:zetwerk%40123@uttkarshsampleprojects.neyhf15.mongodb.net/?retryWrites=true&w=majority`;
+const employeeRouter = require("./router/employeeRouter.js");
+const dB = process.env.DB;
 const connectionParams = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -25,7 +26,7 @@ mongoose
 
 // mongoose connnection
 
-app.use("/", require("./router/employeeRouter.js"));
+app.use("/", employeeRouter);
 
 app.listen(PORT, () => {
   console.log(`Server started running on port http://localhost:${PORT}`);
