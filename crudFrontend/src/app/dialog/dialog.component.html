@@ -1,0 +1,75 @@
+<h1 mat-dialog-title>Add Employes Data</h1>
+<div mat-dialog-content>
+  <form [formGroup]="productForm">
+    <!-- Employee Name : should not contain special characters-->
+    <mat-form-field class="first" [style.width.%]="100" appearance="outline">
+      <mat-label>Employee Name</mat-label>
+      <input
+        formControlName="name"
+        matInput
+        placeholder="Entern the name of the Employee"
+      />
+    </mat-form-field>
+
+    <!-- Employee Image : should be only jpeg -->
+    <mat-label>Choose an Image</mat-label>
+    <input
+      type="file"
+      id="file"
+      formControlName="photo"
+      (change)="onFileSelected($event)"
+    />
+
+    <!-- Salary : Integer > 0 -->
+    <mat-form-field [style.width.%]="100" appearance="outline">
+      <mat-label>Salary</mat-label>
+      <input
+        formControlName="salary"
+        matInput
+        type="number"
+        placeholder="Enter the salary of the Emoloyee in INR"
+      />
+    </mat-form-field>
+
+    <!-- For multiselect box -->
+    <mat-form-field [style.width.%]="100" appearance="outline">
+      <mat-label>Skills</mat-label>
+      <mat-select
+        formControlName="skills"
+        placeholder="Skills"
+        [(value)]="selectedSkills"
+        multiple
+      >
+        <mat-option *ngFor="let skill of skillLists" [value]="skill">{{
+          skill
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p>
+      <!-- make it chip selector -->
+      {{ selectedSkills | json }}
+    </p>
+
+    <!-- date of birth : should not be greater than present date -->
+    <mat-form-field [style.width.%]="100" appearance="outline">
+      <mat-label>Enter DOB</mat-label>
+      <input formControlName="dateOfBirth" matInput [matDatepicker]="picker" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <!-- <mat-error *ngIf="_form.get('date').errors">{{
+        _form.get("date").errors["invalidDate"]
+      }}</mat-error> -->
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialogue-action [align]="'end'" class="saveCancle">
+  <button (click)="addEmployee()" mat-raised-button color="primary">
+    {{ actionBtn }}
+  </button>
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

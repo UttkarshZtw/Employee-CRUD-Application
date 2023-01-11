@@ -1,0 +1,9 @@
+.first{
+    margin: 10px 0px;
+}
+.saveCancle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 20px 0px;
+}

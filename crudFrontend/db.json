@@ -1,0 +1,58 @@
+{
+  "employeeList": [
+    {
+      "name": "sample ",
+      "salary": 123,
+      "skills": [
+        "Backend",
+        "Quality Assurance",
+        "Analytics"
+      ],
+      "dateOfBirth": "2023-01-07T18:30:00.000Z",
+      "id": 1
+    },
+    {
+      "name": "uttkarsh",
+      "photo": "C:\\fakepath\\WhatsApp Image 2023-01-05 at 1.30.38 PM.jpeg",
+      "salary": 123,
+      "skills": [
+        "Analytics"
+      ],
+      "dateOfBirth": "2023-01-08T18:30:00.000Z",
+      "id": 2
+    },
+    {
+      "name": "uas",
+      "photo": "C:\\fakepath\\WhatsApp Image 2023-01-05 at 1.30.38 PM.jpeg",
+      "salary": 123,
+      "skills": [
+        "Quality Assurance",
+        "Analytics",
+        "Product"
+      ],
+      "dateOfBirth": "2023-01-07T18:30:00.000Z",
+      "id": 3
+    },
+    {
+      "name": "gaurav zetwerk",
+      "photo": "",
+      "salary": 12312,
+      "skills": [
+        "Frontend",
+        "Backend"
+      ],
+      "dateOfBirth": "2023-01-07T18:30:00.000Z",
+      "id": 4
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
