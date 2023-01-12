@@ -106,6 +106,7 @@ export class DialogComponent implements OnInit {
     if (!this.editData) {
       console.log(this.productForm.value);
       if (this.productForm.valid) {
+        
         // this.api.fileUpload(this.data).subscribe((data) => {
         //   console.log(data);
         //   // console.log(re)
