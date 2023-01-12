@@ -4,6 +4,10 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 const employeeSchama = new Schema({
+  employeeId: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,

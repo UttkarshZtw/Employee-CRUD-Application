@@ -43,4 +43,8 @@ Endpoints are mentoined below
 
 - Pagination on backend
 
+- Confirmation button on deleting
+
+- Profile View
+
 - some angular learning stuffs(must do 🛑)

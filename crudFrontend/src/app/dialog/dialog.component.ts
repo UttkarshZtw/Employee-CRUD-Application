@@ -37,6 +37,7 @@ export class DialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
+      employeeId: [''],
       name: [
         '',
         [
@@ -104,23 +105,43 @@ export class DialogComponent implements OnInit {
 
   addEmployee() {
     if (!this.editData) {
-      console.log(this.productForm.value);
+      // console.log(this.productForm.value);
       if (this.productForm.valid) {
-        
+        this.api.getEmployeeId().subscribe({
+          next: (res) => {
+            console.log(res);
+            this.productForm.controls['employeeId'].setValue(res.data);
+            this.api.fileUpload(this.data).subscribe((data) => {
+              console.log(data);
+              // console.log(re)
+            });
+            this.api.postEmployee(this.productForm.value).subscribe({
+              next: (res) => {
+                alert('Employee added Sucessfully!');
+                this.productForm.reset();
+                this.dialogRef.close('save');
+              },
+              error: () => {
+                alert('Employee addition faliure !');
+              },
+            });
+          },
+        });
+        console.log(this.productForm.value);
         // this.api.fileUpload(this.data).subscribe((data) => {
         //   console.log(data);
         //   // console.log(re)
         // });
-        this.api.postEmployee(this.productForm.value).subscribe({
-          next: (res) => {
-            alert('Employee added Sucessfully!');
-            this.productForm.reset();
-            this.dialogRef.close('save');
-          },
-          error: () => {
-            alert('Employee addition faliure !');
-          },
-        });
+        // this.api.postEmployee(this.productForm.value).subscribe({
+        //   next: (res) => {
+        //     alert('Employee added Sucessfully!');
+        //     this.productForm.reset();
+        //     this.dialogRef.close('save');
+        //   },
+        //   error: () => {
+        //     alert('Employee addition faliure !');
+        //   },
+        // });
       }
     } else {
       this.updateEmployee();

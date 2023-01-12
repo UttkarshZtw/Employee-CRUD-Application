@@ -40,8 +40,10 @@
       <table mat-table [dataSource]="dataSource" matSort>
         <!-- ID Column -->
         <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Serial No.</th>
-          <td mat-cell *matCellDef="let row">{{ row._id }}</td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Employee No.
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.employeeId }}</td>
         </ng-container>
 
         <!-- name Column -->

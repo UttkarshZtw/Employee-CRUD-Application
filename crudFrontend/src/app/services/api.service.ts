@@ -7,8 +7,6 @@ import { Injectable } from '@angular/core';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-
-  
   postEmployee(data: any) {
     return this.http.post<any>('http://localhost:3000/', data);
   }
@@ -27,6 +25,11 @@ export class ApiService {
   getParticularEmployee(id: any) {
     return this.http.get<any>('http://localhost:3000/' + id);
   }
+
+  getEmployeeId() {
+    return this.http.get<any>('http://localhost:3000/count/update');
+  }
+
   fileUpload(imageData: FormData) {
     const url = 'https://api.cloudinary.com/v1_1/dmftb38mw/image/upload';
     // const payload = {
