@@ -19,6 +19,7 @@
   </button>
 </mat-toolbar>
 
+<!-- <app-employee-profile [profile]="employeeProfile"></app-employee-profile> -->
 <!-- <router-outlet></router-outlet> -->
 
 <!-- table container -->
@@ -48,7 +49,9 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             Employee name
           </th>
-          <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+          <td mat-cell *matCellDef="let row" (click)="openProfile(row._id)">
+            {{ row.name }}
+          </td>
         </ng-container>
 
         <!-- date of birth Column -->

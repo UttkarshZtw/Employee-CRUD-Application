@@ -5,6 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 const employeeRouter = require("./router/employeeRouter.js");
+const employeeCountRouter = require("./router/employeeCount.js");
 const dB = process.env.DB;
 const connectionParams = {
   useNewUrlParser: true,
@@ -27,6 +28,7 @@ mongoose
 // mongoose connnection
 
 app.use("/", employeeRouter);
+app.use("/count", employeeCountRouter);
 
 app.listen(PORT, () => {
   console.log(`Server started running on port http://localhost:${PORT}`);

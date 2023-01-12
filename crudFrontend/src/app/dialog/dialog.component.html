@@ -9,16 +9,19 @@
         matInput
         placeholder="Entern the name of the Employee"
       />
+      <mat-hint>Only alphabets are allowed ! </mat-hint>
     </mat-form-field>
 
     <!-- Employee Image : should be only jpeg -->
-    <mat-label>Choose an Image</mat-label>
-    <input
-      type="file"
-      id="file"
-      formControlName="photo"
-      (change)="onFileSelected($event)"
-    />
+    <div class="imageUpload">
+      <mat-label>Choose an Image</mat-label>
+      <input
+        type="file"
+        id="file"
+        formControlName="photo"
+        (change)="onFileSelected($event)"
+      />
+    </div>
 
     <!-- Salary : Integer > 0 -->
     <mat-form-field [style.width.%]="100" appearance="outline">
@@ -29,6 +32,7 @@
         type="number"
         placeholder="Enter the salary of the Emoloyee in INR"
       />
+      <mat-hint>Positive values only !</mat-hint>
     </mat-form-field>
 
     <!-- For multiselect box -->
@@ -45,10 +49,6 @@
         }}</mat-option>
       </mat-select>
     </mat-form-field>
-    <p>
-      <!-- make it chip selector -->
-      {{ selectedSkills | json }}
-    </p>
 
     <!-- date of birth : should not be greater than present date -->
     <mat-form-field [style.width.%]="100" appearance="outline">

@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const { Employee } = require("../models/employee.js");
 const employeeController = require("../controller/employee.js");
 // api : '/' Method : GET ;  getting all the employees
 

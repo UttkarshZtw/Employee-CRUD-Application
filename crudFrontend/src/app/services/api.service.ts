@@ -21,4 +21,30 @@ export class ApiService {
   deteteEmployee(id: number) {
     return this.http.delete<any>('http://localhost:3000/' + id);
   }
+
+  geParticularEmployee(id: any) {
+    return this.http.get<any>('http://localhost:3000/' + id);
+  }
+  fileUpload(imageData: FormData) {
+    const url = 'https://api.cloudinary.com/v1_1/dmftb38mw/image/upload';
+    // const payload = {
+    //   body: imageData.data,
+    // };
+    return this.http.post<any>(url, imageData);
+
+    // fetch(imageData.url, {
+    //   method: 'post',
+    //   body: data,
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     console.log(typeof data.url);
+    //     this.productForm.controls['photo'].setValue(data.url);
+    //     // data.url : contains image
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  }
 }

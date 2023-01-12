@@ -36,3 +36,11 @@ Endpoints are mentoined below
 - `/:id` - METHOD `PUT` Updating the particular employee data
 
 - `/:id` - METHOD `DELETE` Delete the particular employee data
+
+### Pending Tasks 👁
+
+- Routing and component splitting
+
+- Pagination on backend
+
+- some angular learning stuffs(must do 🛑)

@@ -7,6 +7,7 @@ import { ApiService } from './services/api.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,7 +15,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class AppComponent implements OnInit {
   title = 'crudFrontend';
-
+  employeeProfile: any;
   displayedColumns: string[] = [
     'id',
     'name',
@@ -28,7 +29,11 @@ export class AppComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog, private api: ApiService) {}
+  constructor(
+    private dialog: MatDialog,
+    private api: ApiService,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getAllEmployees();
@@ -95,5 +100,11 @@ export class AppComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  openProfile(id: any) {
+    // console.log(id);
+    this.employeeProfile = id;
+    this._router.navigate([`profile/${id}`]);
   }
 }

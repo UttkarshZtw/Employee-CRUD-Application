@@ -17,7 +17,11 @@ import { dateValidator, salaryValidator } from './customValidators';
   styleUrls: ['./dialog.component.css'],
 })
 export class DialogComponent implements OnInit {
-  imageUrl: string = '';
+  imageData: any = {
+    uploadUrl: '',
+    data: null,
+  };
+  data!: FormData;
   skills = new FormControl();
   actionBtn: string = 'Save';
   productForm!: FormGroup;
@@ -66,7 +70,6 @@ export class DialogComponent implements OnInit {
     'UI/UX',
   ];
   selectedSkills: any;
-  // console.log(selectedToppings)
 
   // Image uplaod section
   onFileSelected(event: any) {
@@ -77,6 +80,12 @@ export class DialogComponent implements OnInit {
     const data = new FormData();
     data.append('file', image);
     data.append('upload_preset', 'crudapp');
+    this.data = data;
+    this.imageData = {
+      data: data,
+      uploadUrl: url,
+    };
+
     fetch(url, {
       method: 'post',
       body: data,
@@ -86,7 +95,7 @@ export class DialogComponent implements OnInit {
         console.log(data);
         console.log(typeof data.url);
         this.productForm.controls['photo'].setValue(data.url);
-        // data.url : contains image
+        // data.url : contains image url
       })
       .catch((err) => {
         console.log(err);
@@ -97,6 +106,10 @@ export class DialogComponent implements OnInit {
     if (!this.editData) {
       console.log(this.productForm.value);
       if (this.productForm.valid) {
+        // this.api.fileUpload(this.data).subscribe((data) => {
+        //   console.log(data);
+        //   // console.log(re)
+        // });
         this.api.postEmployee(this.productForm.value).subscribe({
           next: (res) => {
             alert('Employee added Sucessfully!');
