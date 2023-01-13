@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 import { ApiService } from './services/api.service';
 
@@ -8,6 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { ConfirmationDailogComponent } from './confirmation-dailog/confirmation-dailog.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit {
     'action',
   ];
   dataSource!: MatTableDataSource<any>;
-
+  dialogRef!: MatDialogRef<ConfirmationDailogComponent>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -78,6 +79,27 @@ export class AppComponent implements OnInit {
           this.getAllEmployees();
         }
       });
+  }
+
+  deleteConfirmation(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string,
+    id: number
+  ) {
+    this.dialogRef = this.dialog.open(ConfirmationDailogComponent, {
+      disableClose: false,
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+
+    this.dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('deleted employee');
+        this.deleteEmployee(id);
+        this.dialogRef.close();
+      }
+    });
   }
 
   deleteEmployee(id: number) {

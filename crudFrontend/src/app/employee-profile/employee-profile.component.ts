@@ -18,6 +18,7 @@ export class EmployeeProfileComponent implements OnInit, OnChanges {
   constructor(private route: ActivatedRoute, private api: ApiService) {}
   ngOnInit(): void {
     this._employeeId = this.route.snapshot.paramMap.get('id');
+
   }
   ngOnChanges(changes: SimpleChanges): void {
     console.log('this is changes ', changes);

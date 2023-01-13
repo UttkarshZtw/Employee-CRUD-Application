@@ -23,6 +23,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TableComponent } from './table/table.component';
+import { ConfirmationDailogComponent } from './confirmation-dailog/confirmation-dailog.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { TableComponent } from './table/table.component';
     EmployeeProfileComponent,
     NavbarComponent,
     TableComponent,
+    ConfirmationDailogComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Delete file</h1>
+<div mat-dialog-content>Would you like to delete particular Employee ?</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close(true)" color="primary">Ok</button>
+  <button
+    mat-button
+    cdkFocusInitial
+    (click)="dialogRef.close(false)"
+    color="warn"
+  >
+    No
+  </button>
+</div>
