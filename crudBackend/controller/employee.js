@@ -3,7 +3,15 @@ const { Employee } = require("../models/employee.js");
 exports.getEmployees = async (req, res) => {
   try {
     const getAllEmployees = await Employee.find();
-    res.status(200).json({ data: getAllEmployees });
+    if (Object.keys(req.query).length > 0) {
+      const { page, limit } = req.query;
+      const employeeLimitData = await Employee.find()
+        .limit(limit * 1)
+        .skip((page - 1) * limit);
+      res.status(200).json({ data: employeeLimitData });
+    } else {
+      res.status(200).json({ data: getAllEmployees });
+    }
   } catch (error) {
     res.status(500).json({ err: error.message });
   }
@@ -17,6 +25,27 @@ exports.getEmployee = async (req, res) => {
       throw createErrors(404, "Employee dose not exist in database !");
     }
     res.status(200).json({ getEmployee });
+  } catch (error) {
+    res.status(500).json({ err: error.message });
+  }
+};
+
+exports.searchEmployees = async (req, res) => {
+  try {
+    const { filter } = req.query;
+    // const filterQuery = `/${filter}/i`;
+    // const employeeBySkills = await Employee.find({
+    //   skills: { $in: ["/back/i"] },
+    // });
+    console.log(employeeBySkills);
+    const getEmployees = await Employee.find({
+      $or: [
+        { name: { $regex: `.*${filter}.*`, $options: "i" } },
+        { employeeId: { $regex: `.*${filter}.*`, $options: "i" } },
+        { skills: { $regex: `.*${filter}.*`, $options: "i" } },
+      ],
+    });
+    res.status(200).json({ getEmployees });
   } catch (error) {
     res.status(500).json({ err: error.message });
   }

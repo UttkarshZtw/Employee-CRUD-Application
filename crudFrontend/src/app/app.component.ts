@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private dialog: MatDialog,
+    public dialog: MatDialog,
     private api: ApiService,
     private _router: Router
   ) {}
@@ -40,18 +40,6 @@ export class AppComponent implements OnInit {
     this.getAllEmployees();
   }
 
-  openDialog() {
-    this.dialog
-      .open(DialogComponent, {
-        width: '30%',
-      })
-      .afterClosed()
-      .subscribe((val) => {
-        if (val == 'save') {
-          this.getAllEmployees();
-        }
-      });
-  }
 
   getAllEmployees() {
     this.api.getEmployee().subscribe({

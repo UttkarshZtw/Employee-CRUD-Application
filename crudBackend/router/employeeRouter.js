@@ -8,6 +8,9 @@ router.get("/", employeeController.getEmployees);
 
 router.get("/:id", employeeController.getEmployee);
 
+// api : '/search?key=' Method GET ; Find query of
+router.get("/employee/search", employeeController.searchEmployees);
+
 // api : '/' Method : POST ; Adding a new Employee
 router.post("/", employeeController.createEmployee);
 

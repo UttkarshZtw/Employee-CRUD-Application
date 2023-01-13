@@ -48,3 +48,8 @@ Endpoints are mentoined below
 - Profile View
 
 - some angular learning stuffs(must do 🛑)
+
+### Bugs to be fixed 
+
+- The edit button not picking up the image url and also removing the 
+employeeId on making edit submission 
