@@ -39,17 +39,12 @@ Endpoints are mentoined below
 
 ### Pending Tasks 👁
 
-- Routing and component splitting
+- Pagination and filter connecting with frontend 
 
-- Pagination on backend
-
-- Confirmation button on deleting
-
-- Profile View
+- Bug fixes
 
 - some angular learning stuffs(must do 🛑)
 
 ### Bugs to be fixed 
 
-- The edit button not picking up the image url and also removing the 
-employeeId on making edit submission 
+- The edit button should display the preview of the image uploaded
