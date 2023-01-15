@@ -47,4 +47,4 @@ Endpoints are mentoined below
 
 ### Bugs to be fixed 
 
-- The edit button should display the preview of the image uploaded
+- The edit button should also come at each profile page 

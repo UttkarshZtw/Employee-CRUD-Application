@@ -26,6 +26,8 @@ export class DialogComponent implements OnInit {
   actionBtn: string = 'Save';
   productForm!: FormGroup;
   srcResult: any;
+  lastPreviewImage: any;
+  latestSelected: boolean = true;
   today: Date = new Date();
   constructor(
     private formBuilder: FormBuilder,
@@ -55,6 +57,7 @@ export class DialogComponent implements OnInit {
     if (this.editData) {
       this.actionBtn = 'Update';
       console.log(this.editData);
+      this.lastPreviewImage = this.editData.photo;
       this.productForm.controls['photo'].setValue(this.editData.photo);
       this.productForm.controls['employeeId'].setValue(
         this.editData.employeeId
@@ -79,6 +82,7 @@ export class DialogComponent implements OnInit {
 
   // Image uplaod section
   onFileSelected(event: any) {
+    this.latestSelected = false;
     console.log(event);
     const image = event.target.files[0];
     const url = 'https://api.cloudinary.com/v1_1/dmftb38mw/image/upload';

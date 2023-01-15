@@ -14,9 +14,21 @@
 
     <!-- Employee Image : should be only jpeg -->
     <div class="imageUpload">
-      <mat-label>Choose an Image</mat-label>
+      <mat-label *ngIf="latestSelected; else choose">
+        Update your Image
+      </mat-label>
+      <ng-template #choose>
+        <mat-label> Choose an Image </mat-label>
+      </ng-template>
+      <img
+        class="lastPreviewImage"
+        *ngIf="latestSelected"
+        [src]="lastPreviewImage"
+        alt="Employee Image"
+      />
       <input
         type="file"
+        accept="image/*"
         id="file"
         formControlName="photo"
         (change)="onFileSelected($event)"
