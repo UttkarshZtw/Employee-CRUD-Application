@@ -1,1 +1,53 @@
-<p>employee-profile works!</p>
+<!-- Student Profile -->
+<mat-spinner class="loader" *ngIf="notLoaded; else showThis"></mat-spinner>
+<ng-template #showThis>
+  <div class="employee-profile">
+    <div class="row">
+      <div class="card">
+        <div class="card-header bg-transparent text-center">
+          <img
+            class="profile_img"
+            [src]="sanitizedImageUrl"
+            alt="Employee Image"
+          />
+          <h3>{{ employeeData.name }}</h3>
+        </div>
+        <div class="card-body">
+          <p><strong>Employee ID:</strong>{{ employeeData.employeeId }}</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header bg-transparent border-0">
+          <h3 class="mb-0">General Information</h3>
+        </div>
+        <div class="card-body pt-0">
+          <table class="table table-bordered">
+            <tr>
+              <th width="30%">Employee Id</th>
+              <td width="2%">:</td>
+              <td>{{ employeeData.employeeId }}</td>
+            </tr>
+            <tr>
+              <th width="30%">Date of Birth</th>
+              <td width="2%">:</td>
+              <td>{{ employeeData.dateOfBirth | date }}</td>
+            </tr>
+            <tr>
+              <th width="30%">Salary</th>
+              <td width="2%">:</td>
+              <td>{{ employeeData.salary | currency : "INR" }}</td>
+            </tr>
+            <tr>
+              <th width="30%">Skills</th>
+              <td width="2%">:</td>
+              <td *ngFor="let skill of employeeData.skills">
+                {{ skill }}
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

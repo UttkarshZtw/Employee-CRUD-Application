@@ -5,6 +5,15 @@ import { TableComponent } from './table/table.component';
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'dashboard',
+  },
+  {
+    path: 'dashboard',
+    component: TableComponent,
+  },
+  {
     path: 'profile/:id',
     component: EmployeeProfileComponent,
   },

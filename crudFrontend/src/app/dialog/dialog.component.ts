@@ -54,6 +54,11 @@ export class DialogComponent implements OnInit {
 
     if (this.editData) {
       this.actionBtn = 'Update';
+      console.log(this.editData);
+      this.productForm.controls['photo'].setValue(this.editData.photo);
+      this.productForm.controls['employeeId'].setValue(
+        this.editData.employeeId
+      );
       this.productForm.controls['name'].setValue(this.editData.name);
       this.productForm.controls['salary'].setValue(this.editData.salary);
       this.productForm.controls['skills'].setValue(this.editData.skills);

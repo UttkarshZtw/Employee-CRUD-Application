@@ -24,6 +24,7 @@ import { EmployeeProfileComponent } from './employee-profile/employee-profile.co
 import { NavbarComponent } from './navbar/navbar.component';
 import { TableComponent } from './table/table.component';
 import { ConfirmationDailogComponent } from './confirmation-dailog/confirmation-dailog.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ConfirmationDailogComponent } from './confirmation-dailog/confirmation-
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent],
