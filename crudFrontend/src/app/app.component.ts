@@ -40,12 +40,11 @@ export class AppComponent implements OnInit {
     this.getAllEmployees();
   }
 
-
   getAllEmployees() {
-    this.api.getEmployee().subscribe({
+    this.api.getEmployee('').subscribe({
       next: (res) => {
         console.log(res);
-        this.dataSource = new MatTableDataSource(res.data);
+        this.dataSource = new MatTableDataSource(res.getEmployees);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },

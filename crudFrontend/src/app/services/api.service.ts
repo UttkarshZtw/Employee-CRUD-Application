@@ -11,8 +11,10 @@ export class ApiService {
     return this.http.post<any>(environment.domain, data);
   }
 
-  getEmployee() {
-    return this.http.get<any>(environment.domain);
+  getEmployee(search: any) {
+    return this.http.get<any>(
+      `${environment.domain}employee/search?filter=` + search
+    );
   }
 
   putEmployee(data: any, id: number) {

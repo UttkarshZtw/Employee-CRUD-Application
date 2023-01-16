@@ -4,7 +4,6 @@ import {
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
-import * as moment from 'moment';
 
 export function salaryValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -17,17 +16,3 @@ export function salaryValidator(): ValidatorFn {
   };
 }
 export function dateValidator() {}
-// export function dateValidator(): ValidatorFn {
-//   return (control: AbstractControl): ValidationErrors | null => {
-//     console.log(control);
-//     const value = control.value;
-//     if (control.value) {
-//       const date = moment(control.value);
-//       const today = moment();
-//       if (date.isBefore(today)) {
-//         return { invalidDate: true };
-//       }
-//     }
-//     return null;
-//   };
-// }

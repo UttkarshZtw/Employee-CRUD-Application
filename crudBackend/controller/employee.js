@@ -37,7 +37,6 @@ exports.searchEmployees = async (req, res) => {
     // const employeeBySkills = await Employee.find({
     //   skills: { $in: ["/back/i"] },
     // });
-    console.log(employeeBySkills);
     const getEmployees = await Employee.find({
       $or: [
         { name: { $regex: `.*${filter}.*`, $options: "i" } },

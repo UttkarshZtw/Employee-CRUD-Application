@@ -35,13 +35,13 @@ export class TableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   ngOnInit(): void {
-    this.getAllEmployees();
+    this.getAllEmployees('');
   }
-  getAllEmployees() {
-    this.api.getEmployee().subscribe({
+  getAllEmployees(search: String = '') {
+    this.api.getEmployee(search).subscribe({
       next: (res) => {
         console.log(res);
-        this.dataSource = new MatTableDataSource(res.data);
+        this.dataSource = new MatTableDataSource(res.getEmployees);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
@@ -53,11 +53,8 @@ export class TableComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    const search = filterValue.trim().toLowerCase();
+    const data = this.getAllEmployees(search);
   }
 
   editEmployee(data: any) {
@@ -70,7 +67,7 @@ export class TableComponent implements OnInit {
       .afterClosed()
       .subscribe((val) => {
         if (val === 'update') {
-          this.getAllEmployees();
+          this.getAllEmployees('');
         }
       });
   }
@@ -104,7 +101,7 @@ export class TableComponent implements OnInit {
           summary: 'Employee deleted sucessfully !',
           duration: 2000,
         });
-        this.getAllEmployees();
+        this.getAllEmployees('');
       },
       error: (err) => {
         alert('Error deleting Employee !');
