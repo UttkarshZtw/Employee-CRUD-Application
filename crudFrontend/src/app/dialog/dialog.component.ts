@@ -10,6 +10,7 @@ import {
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiService } from '../services/api.service';
 import { dateValidator, salaryValidator } from './customValidators';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-dialog',
@@ -34,7 +35,8 @@ export class DialogComponent implements OnInit {
     private api: ApiService,
     @Inject(MAT_DIALOG_DATA) public editData: any,
     private dialogRef: MatDialogRef<DialogComponent>,
-    private http: HttpClient
+    private http: HttpClient,
+    private _toast: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -126,7 +128,11 @@ export class DialogComponent implements OnInit {
             });
             this.api.postEmployee(this.productForm.value).subscribe({
               next: (res) => {
-                alert('Employee added Sucessfully!');
+                this._toast.success({
+                  detail: 'Sucess Message',
+                  summary: 'Employee added sucessfully !',
+                  duration: 2000,
+                });
                 this.productForm.reset();
                 this.dialogRef.close('save');
               },
@@ -160,7 +166,11 @@ export class DialogComponent implements OnInit {
   updateEmployee() {
     this.api.putEmployee(this.productForm.value, this.editData._id).subscribe({
       next: (res) => {
-        alert('Product Updated');
+        this._toast.success({
+          detail: 'Sucess Message',
+          summary: 'Employee updated sucessfully !',
+          duration: 2000,
+        });
         this.productForm.reset();
         this.dialogRef.close('update');
       },

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { ConfirmationDailogComponent } from '../confirmation-dailog/confirmation-dailog.component';
 import { DialogComponent } from '../dialog/dialog.component';
 import { ApiService } from '../services/api.service';
-
+import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -28,7 +28,8 @@ export class TableComponent implements OnInit {
   constructor(
     private _router: Router,
     public dialog: MatDialog,
-    private api: ApiService
+    private api: ApiService,
+    private _toast: NgToastService
   ) {}
   dialogRef!: MatDialogRef<ConfirmationDailogComponent>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -98,7 +99,11 @@ export class TableComponent implements OnInit {
   deleteEmployee(id: number) {
     this.api.deteteEmployee(id).subscribe({
       next: (res) => {
-        alert('Employee deletd sucessfully !');
+        this._toast.success({
+          detail: 'Sucess Message',
+          summary: 'Employee deleted sucessfully !',
+          duration: 2000,
+        });
         this.getAllEmployees();
       },
       error: (err) => {

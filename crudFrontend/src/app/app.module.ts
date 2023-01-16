@@ -25,6 +25,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TableComponent } from './table/table.component';
 import { ConfirmationDailogComponent } from './confirmation-dailog/confirmation-dailog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
+    NgToastModule
   ],
   providers: [],
   bootstrap: [AppComponent],
