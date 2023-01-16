@@ -39,7 +39,7 @@ Endpoints are mentoined below
 
 ### Pending Tasks 👁
 
-- Pagination and filter connecting with frontend 
+- Pagination frontend integration  
 
 - Bug fixes
 
