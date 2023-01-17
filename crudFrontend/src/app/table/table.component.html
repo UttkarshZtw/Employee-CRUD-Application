@@ -86,31 +86,12 @@
         </tr>
       </table>
 
-      <div>
-        <button (click)="backPage()">Previous</button>
-        <button (click)="nextPage()">Next</button>
+      <div class="paginatorContainer">
+        <button [disabled]="currentPage == 1" (click)="backPage()">
+          Previous
+        </button>
+        <button [disabled]="disableForward" (click)="nextPage()">Next</button>
       </div>
-      <!-- Demo -->
-      <!-- <ol class="pagination-container">
-        <li (click)="navigateToPage(1)">First page</li>
-        <li (click)="navigateToPage(index - 1)">Previous page</li> -->
-      <!-- <li
-          *ngFor="let page of pagination.pages; trackBy: trackByFn"
-          class="pagination-number"
-          [class.active]="page === pagination.index"
-          (click)="navigateToPage(page)"
-        >
-          {{ page }}
-        </li> -->
-      <!-- <li (click)="navigateToPage(index + 1)">Next page</li>
-        <li (click)="navigateToPage(maxPages)">Last page</li>
-      </ol> -->
-
-      <!-- ---------------- -->
-      <mat-paginator
-        [pageSizeOptions]="[5, 10, 25, 100]"
-        aria-label="Select page of users"
-      ></mat-paginator>
     </div>
   </div>
 </div>

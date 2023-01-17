@@ -2,10 +2,8 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnChanges,
   OnInit,
   Output,
-  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -27,6 +25,7 @@ export class TableComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   employeeProfile: any;
   currentPage: number = 1;
+  disableForward: boolean = false;
   displayedColumns: string[] = [
     'id',
     'name',
@@ -41,45 +40,18 @@ export class TableComponent implements OnInit {
     public dialog: MatDialog,
     private api: ApiService,
     private _toast: NgToastService
-  ) {
-    this.maxPages = Math.ceil(this.totalCount / this.pageSize);
-  }
+  ) {}
   dialogRef!: MatDialogRef<ConfirmationDailogComponent>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-
-  // Demo --------------------
-
-  maxPages!: number;
-  @Input() index!: number;
-  @Input() totalCount!: number;
-  @Input() pageSize!: number;
-  @Input() rulerLength!: number;
-  @Output() page: EventEmitter<number> = new EventEmitter<number>();
-
-  // -----------------
 
   ngOnInit(): void {
     this.getAllEmployees('');
   }
 
-  // Demo Function --------
-
-  // navigateToPage(pageNumber: number): void {
-  //   if (allowNavigation(pageNumber, this.index, this.maxPages)) {
-  //     this.index = pageNumber;
-  //     this.page.emit(this.index);
-  //   }
-  // }
-
-  get pagination(): NumberedPagination {
-    const { index, maxPages, rulerLength } = this;
-    // const pages = ruler(index, maxPages, rulerLength);
-    return { index, maxPages } as NumberedPagination;
-  }
-
   backPage() {
     this.currentPage -= 1;
+    if (this.currentPage == 0) this.currentPage = 1;
     console.log(this.currentPage);
     this.getAllEmployees('', this.currentPage);
   }
@@ -92,8 +64,10 @@ export class TableComponent implements OnInit {
   getAllEmployees(search: String = '', page: number = 1, limit: number = 5) {
     this.api.getEmployee(search, page, limit).subscribe({
       next: (res) => {
+        if (res.getEmployees.length < limit) {
+          this.disableForward = true;
+        } else this.disableForward = false;
         this.dataSource = new MatTableDataSource(res.getEmployees);
-        this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         console.log('data source', this.dataSource);
       },

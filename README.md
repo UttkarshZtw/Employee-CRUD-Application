@@ -24,6 +24,7 @@ Endpoints are mentoined below
   payload :
   ```json
   {
+  "employeeId" : Number,
   "name" : String,
   "salary" : Number,
   "dateOfBirth" : Date,
@@ -37,9 +38,10 @@ Endpoints are mentoined below
 
 - `/:id` - METHOD `DELETE` Delete the particular employee data
 
-### Pending Tasks 👁
+-`/search/employee?filter=keyword&page=pageNumber&limit=limitNumber` - METHOD `GET` Getting the 
+employees with respective parameters 
 
-- Pagination frontend integration  
+### Pending Tasks 👁
 
 - Bug fixes
 
@@ -47,4 +49,4 @@ Endpoints are mentoined below
 
 ### Bugs to be fixed 
 
-- The edit button should also come at each profile page 
+- Soft delete and remove the employeeCount collection 
