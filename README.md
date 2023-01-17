@@ -38,8 +38,10 @@ Endpoints are mentoined below
 
 - `/:id` - METHOD `DELETE` Delete the particular employee data
 
--`/search/employee?filter=keyword&page=pageNumber&limit=limitNumber` - METHOD `GET` Getting the 
+- `/search/employee?filter=keyword&page=pageNumber&limit=limitNumber` - METHOD `GET` Getting the 
 employees with respective parameters 
+
+- `/employee/delete/:id` - METHOD `GET` Soft delete a particular employee 
 
 ### Pending Tasks 👁
 
@@ -49,4 +51,4 @@ employees with respective parameters
 
 ### Bugs to be fixed 
 
-- Soft delete and remove the employeeCount collection 
+- Remove the employeeCount collection 

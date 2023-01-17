@@ -31,6 +31,11 @@ const employeeSchama = new Schema({
     type: String,
     required: true,
   },
+  isDeleted: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
 });
 
 // mongodb by default creates the collection with the plural of schema name

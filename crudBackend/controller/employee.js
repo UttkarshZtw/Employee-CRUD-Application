@@ -40,7 +40,7 @@ exports.createEmployee = async (req, res) => {
     );
     res.status(200).json({ createdEmployee });
   } catch (error) {
-    res.send(500).json({ err: error.message });
+    res.send(400).json({ err: error.message });
   }
 };
 
@@ -54,7 +54,7 @@ exports.editEmployee = async (req, res) => {
     const updatedEmployee = await employeeServices.editEmployee(id, update);
     res.status(200).json({ updatedEmployee });
   } catch (error) {
-    res.status(500).json({ err: error.message });
+    res.status(400).json({ err: error.message });
   }
 };
 
@@ -66,6 +66,17 @@ exports.deleteEmployee = async (req, res) => {
     }
     const deletedEmployee = await employeeServices.deleteEmployee(id);
     res.status(200).json({ deletedEmployee });
+  } catch (error) {
+    res.status(500).json({ err: error.message });
+  }
+};
+
+exports.softDelete = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!id) throw new Error("_id required to delete an employee");
+    const softDeletedEmployee = await employeeServices.softDelete(id);
+    res.status(200).json({ softDeletedEmployee });
   } catch (error) {
     res.status(500).json({ err: error.message });
   }

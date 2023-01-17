@@ -21,4 +21,6 @@ router.put("/:id", employeeController.editEmployee);
 // api : '/' Method : DELETE ; deleteing an existing employee
 router.delete("/:id", employeeController.deleteEmployee);
 
+// api : '/employee/delete/:id': PUT; soft deleting the exsiting employee
+router.get("/employee/delete/:id", employeeController.softDelete);
 module.exports = router;

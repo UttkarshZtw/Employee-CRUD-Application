@@ -34,6 +34,10 @@ export class ApiService {
     return this.http.get<any>(`${environment.domain}count/update`);
   }
 
+  softDelete(id: any) {
+    return this.http.get<any>(`${environment.domain}employee/delete/` + id);
+  }
+
   fileUpload(imageData: FormData) {
     return this.http.post<any>(environment.imageServiceDomain, imageData);
   }

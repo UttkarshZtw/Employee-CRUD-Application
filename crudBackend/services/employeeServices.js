@@ -18,6 +18,7 @@ exports.searchEmployees = async (page, limit, filter) => {
       { employeeId: { $regex: `.*${filter}.*`, $options: "i" } },
       { skills: { $regex: `.*${filter}.*`, $options: "i" } },
     ],
+    $and: [{ isDeleted: false }],
   })
     .limit(limit * 1)
     .skip((page - 1) * limit);
@@ -59,4 +60,11 @@ exports.deleteEmployee = async (id) => {
   if (deletedEmployee === null || deletedEmployee === undefined)
     throw new Error("Unable to delete an employee ");
   return deletedEmployee;
+};
+
+exports.softDelete = async (id) => {
+  const options = { new: "true" };
+  const update = { isDeleted: true };
+  const softDelete = await Employee.findByIdAndUpdate(id, update, options);
+  return softDelete;
 };

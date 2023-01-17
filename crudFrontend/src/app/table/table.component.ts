@@ -120,7 +120,7 @@ export class TableComponent implements OnInit {
   }
 
   deleteEmployee(id: number) {
-    this.api.deteteEmployee(id).subscribe({
+    this.api.softDelete(id).subscribe({
       next: (res) => {
         this._toast.success({
           detail: 'Sucess Message',
