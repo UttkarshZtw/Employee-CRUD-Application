@@ -2,7 +2,7 @@ const router = require("express").Router();
 const employeeController = require("../controller/employee.js");
 // api : '/' Method : GET ;  getting all the employees
 
-router.get("/", employeeController.getEmployees);
+// router.get("/", employeeController.getEmployees);
 
 // api : '/:id' Method GET ; Find one by Id
 
